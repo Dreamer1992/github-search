@@ -7,8 +7,11 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import {SearchInputStyles} from "./SearchInputStyles";
+import {useDispatch} from "react-redux";
+import {setProjects} from "../../store/reducers/searchReducer";
 
 const SearchInput = ({updateProjects}) => {
+    const dispatch = useDispatch();
     const classes = SearchInputStyles();
 
     // Search term
@@ -26,12 +29,13 @@ const SearchInput = ({updateProjects}) => {
 
                 searchAPI.getSearch(debouncedSearchTerm).then(res => {
                     setIsSearching(false);
-                    updateProjects(res.items);
+
+                    dispatch(setProjects(res.items))
 
                     res.total_count ? setIsResult(false) : setIsResult(true)
                 });
             } else {
-                updateProjects([]);
+                dispatch(setProjects([]))
             }
         },
         [debouncedSearchTerm]

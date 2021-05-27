@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -14,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import SearchInput from "../../components/SearchInput/SearchInput";
 import CardMedia from '@material-ui/core/CardMedia';
 import {searchStyles} from "./SearchStyles";
+import {useSelector} from 'react-redux'
 
 const Copyright = () => {
     return (
@@ -29,13 +30,7 @@ const Copyright = () => {
 }
 
 const Search = () => {
-    // API search results
-    const [projects, setProjects] = useState([])
-
-    const updateProjects = (projects) => {
-        setProjects(projects)
-    }
-
+    const {projects} = useSelector((state) => state.search)
     const classes = searchStyles();
 
     return (
@@ -59,7 +54,7 @@ const Search = () => {
 
                 <Grid container spacing={5}>
                     <Grid item xs={12}>
-                        <SearchInput updateProjects={updateProjects}/>
+                        <SearchInput/>
                     </Grid>
                 </Grid>
 
