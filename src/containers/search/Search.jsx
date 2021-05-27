@@ -1,20 +1,20 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import SearchInput from "../../components/SearchInput/SearchInput";
-import CardMedia from '@material-ui/core/CardMedia';
-import {searchStyles} from "./SearchStyles";
-import {useSelector} from 'react-redux'
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Grid from '@material-ui/core/Grid'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import SearchInput from '../../components/SearchInput/SearchInput'
+import CardMedia from '@material-ui/core/CardMedia'
+import { searchStyles } from './SearchStyles'
+import { useSelector } from 'react-redux'
 
 const Copyright = () => {
     return (
@@ -26,16 +26,16 @@ const Copyright = () => {
             {new Date().getFullYear()}
             {'.'}
         </Typography>
-    );
+    )
 }
 
 const Search = () => {
-    const {projects} = useSelector((state) => state.search)
-    const classes = searchStyles();
+    const { projects } = useSelector((state) => state.search)
+    const classes = searchStyles()
 
     return (
         <React.Fragment>
-            <CssBaseline/>
+            <CssBaseline />
             <AppBar position="static" color="primary" className={classes.appBar}>
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
@@ -54,7 +54,7 @@ const Search = () => {
 
                 <Grid container spacing={5}>
                     <Grid item xs={12}>
-                        <SearchInput/>
+                        <SearchInput />
                     </Grid>
                 </Grid>
 
@@ -71,9 +71,7 @@ const Search = () => {
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {project.name}
                                     </Typography>
-                                    <Typography gutterBottom>
-                                        {project.description}
-                                    </Typography>
+                                    <Typography gutterBottom>{project.description}</Typography>
                                     <Typography color="textSecondary">
                                         Stargazers count: {project.stargazers_count}
                                     </Typography>
@@ -96,12 +94,12 @@ const Search = () => {
             {/* Footer */}
             <Container maxWidth="md" component="footer">
                 <Box className={classes.footer}>
-                    <Copyright/>
+                    <Copyright />
                 </Box>
             </Container>
             {/* End footer */}
         </React.Fragment>
-    );
+    )
 }
 
 export default Search

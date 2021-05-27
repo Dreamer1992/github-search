@@ -1,18 +1,18 @@
 const SET_PROJECTS = 'SET_PROJECTS'
 
 let initialState = {
-    projects: []
+    projects: [],
 }
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PROJECTS:
-            return {...state, projects: [...action.projects]}
+            return { ...state, projects: [...action.projects] }
         default:
             return state
     }
 }
 
-export const setProjects = (projects) => ({type: SET_PROJECTS, projects})
+export const setProjects = (projects) => ({ type: SET_PROJECTS, projects })
 
 export default searchReducer

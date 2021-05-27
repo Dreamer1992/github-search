@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles'
 
 export const searchStyles = makeStyles((theme) => ({
     '@global': {
@@ -47,4 +47,4 @@ export const searchStyles = makeStyles((theme) => ({
     cardContent: {
         flexGrow: 1,
     },
-}));
+}))

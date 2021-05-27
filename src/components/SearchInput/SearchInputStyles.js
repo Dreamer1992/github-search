@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles'
 
 export const SearchInputStyles = makeStyles((theme) => ({
     root: {
@@ -16,5 +16,5 @@ export const SearchInputStyles = makeStyles((theme) => ({
     paddingW: {
         paddingLeft: '10px',
         paddingRight: '10px',
-    }
-}));
+    },
+}))

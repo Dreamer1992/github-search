@@ -1,45 +1,42 @@
-import React, {useEffect, useState} from 'react';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import {searchAPI} from "../../api/api";
-import useDebounce from "../../hooks/use-debounce";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import {SearchInputStyles} from "./SearchInputStyles";
-import {useDispatch} from "react-redux";
-import {setProjects} from "../../store/reducers/searchReducer";
+import React, { useEffect, useState } from 'react'
+import Paper from '@material-ui/core/Paper'
+import InputBase from '@material-ui/core/InputBase'
+import { searchAPI } from '../../api/api'
+import useDebounce from '../../hooks/use-debounce'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import { SearchInputStyles } from './SearchInputStyles'
+import { useDispatch } from 'react-redux'
+import { setProjects } from '../../store/reducers/searchReducer'
 
-const SearchInput = ({updateProjects}) => {
-    const dispatch = useDispatch();
-    const classes = SearchInputStyles();
+const SearchInput = ({ updateProjects }) => {
+    const dispatch = useDispatch()
+    const classes = SearchInputStyles()
 
     // Search term
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('')
     // Searching status (whether there is pending API request)
-    const [isSearching, setIsSearching] = useState(false);
-    const [isResults, setIsResult] = useState(false);
+    const [isSearching, setIsSearching] = useState(false)
+    const [isResults, setIsResult] = useState(false)
     // As a result the API call should only fire once user stops typing
-    const debouncedSearchTerm = useDebounce(searchTerm, 500);
+    const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
-    useEffect(
-        () => {
-            if (debouncedSearchTerm && debouncedSearchTerm.length >= 3) {
-                setIsSearching(true);
+    useEffect(() => {
+        if (debouncedSearchTerm && debouncedSearchTerm.length >= 3) {
+            setIsSearching(true)
 
-                searchAPI.getSearch(debouncedSearchTerm).then(res => {
-                    setIsSearching(false);
+            searchAPI.getSearch(debouncedSearchTerm).then((res) => {
+                setIsSearching(false)
 
-                    dispatch(setProjects(res.items))
+                dispatch(setProjects(res.items))
 
-                    res.total_count ? setIsResult(false) : setIsResult(true)
-                });
-            } else {
-                dispatch(setProjects([]))
-            }
-        },
-        [debouncedSearchTerm]
-    );
+                res.total_count ? setIsResult(false) : setIsResult(true)
+            })
+        } else {
+            dispatch(setProjects([]))
+        }
+    }, [debouncedSearchTerm])
 
     return (
         <>
@@ -47,8 +44,8 @@ const SearchInput = ({updateProjects}) => {
                 <InputBase
                     className={classes.input}
                     placeholder="Search"
-                    inputProps={{'aria-label': 'search'}}
-                    onChange={e => setSearchTerm(e.target.value)}
+                    inputProps={{ 'aria-label': 'search' }}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </Paper>
 
@@ -72,7 +69,7 @@ const SearchInput = ({updateProjects}) => {
                 </Container>
             )}
 
-            {(debouncedSearchTerm.length < 3) && (
+            {debouncedSearchTerm.length < 3 && (
                 <Container maxWidth="md" className={classes.paddingW}>
                     <Grid>
                         <Typography variant="h6" color="textPrimary">
@@ -82,7 +79,7 @@ const SearchInput = ({updateProjects}) => {
                 </Container>
             )}
         </>
-    );
+    )
 }
 
 export default SearchInput
